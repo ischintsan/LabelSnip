@@ -1,0 +1,105 @@
+﻿<Window x:Class="LabelSnip.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LabelSnap"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920">
+
+    <!-- 添加 InputBindings 来处理快捷键 -->
+    <Window.InputBindings>
+        <KeyBinding Key="A" Command="{Binding PrevImageCommand}" />
+        <KeyBinding Key="D" Command="{Binding NextImageCommand}" />
+    </Window.InputBindings>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- 主内容区域 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 状态栏 -->
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 标注管理面板 -->
+        <StackPanel Grid.Column="0" Margin="5" Orientation="Vertical">
+            <Viewbox>
+                <Button Content="Open" Click="OpenImage_Click" Margin="5" Width="100">
+                    <Button.Height>
+                        <!-- 绑定 Height 到 Width，使按钮宽高相等 -->
+                        <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
+                    </Button.Height>
+                </Button>
+            </Viewbox>
+            <Viewbox>
+                <Button Content="Open Images Dir" Click="OpenImageFolder_Click" Margin="5" Width="100" FontSize="10">
+                    <Button.Height>
+                        <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
+                    </Button.Height>
+                </Button>
+            </Viewbox>
+            <Viewbox>
+                <Button Content="Open Labels Dir" Click="OpenLabelsFolder_Click" Margin="5" Width="100" FontSize="10">
+                    <Button.Height>
+                        <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
+                    </Button.Height>
+                </Button>
+            </Viewbox>
+            <Viewbox>
+                <Button Content="Change Output Dir" Click="ChangedSaveFolder_Click" Margin="5" Width="100" FontSize="10">
+                    <Button.Height>
+                        <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
+                    </Button.Height>
+                </Button>
+            </Viewbox>
+            <Viewbox>
+                <Button Content="Prev Image(A)" Click="PrevImage_Click" Margin="5" Width="100">
+                    <Button.Height>
+                        <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
+                    </Button.Height>
+                </Button>
+            </Viewbox>
+            <Viewbox>
+                <Button Content="Next Image(D)" Click="NextImage_Click" Margin="5" Width="100">
+                    <Button.Height>
+                        <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
+                    </Button.Height>
+                </Button>
+            </Viewbox>
+            
+        </StackPanel>
+
+        <!-- 图片显示和标注区域 -->
+        <Grid Grid.Column="1">
+            <Canvas x:Name="MainCanvas" Background="Transparent" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    MouseDown="MainCanvas_MouseDown"
+                    MouseMove="MainCanvas_MouseMove"
+                    IsHitTestVisible="True"
+                    Panel.ZIndex="0">
+            </Canvas>
+            <!-- 透明Canvas用于绘制十字虚线 -->
+            <Canvas x:Name="CrosshairCanvas" Background="Transparent"
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            IsHitTestVisible="False"
+            Panel.ZIndex="1">
+            </Canvas>
+            <Canvas x:Name="SnapCanvas" Background="Transparent"
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            IsHitTestVisible="False"
+            Panel.ZIndex="1">
+            </Canvas>
+        </Grid>
+
+        <!-- 状态栏 -->
+        <StatusBar Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+            <TextBlock x:Name="StatusBarText" Text="" />
+            <TextBlock x:Name="ImageInfoText" HorizontalAlignment="Right" />
+        </StatusBar>
+    </Grid>
+</Window>
