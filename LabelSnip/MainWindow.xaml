@@ -11,6 +11,7 @@
     <Window.InputBindings>
         <KeyBinding Key="A" Command="{Binding PrevImageCommand}" />
         <KeyBinding Key="D" Command="{Binding NextImageCommand}" />
+        <KeyBinding Key="Delete" Command="{Binding DeleteCurrImageCommand}" />
     </Window.InputBindings>
 
     <Grid>
@@ -29,7 +30,7 @@
         <!-- 标注管理面板 -->
         <StackPanel Grid.Column="0" Margin="5" Orientation="Vertical">
             <Viewbox>
-                <Button Content="Open" Click="OpenImage_Click" Margin="5" Width="100">
+                <Button Content="打开图像" Click="OpenImage_Click" Margin="5" Width="100">
                     <Button.Height>
                         <!-- 绑定 Height 到 Width，使按钮宽高相等 -->
                         <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
@@ -37,35 +38,35 @@
                 </Button>
             </Viewbox>
             <Viewbox>
-                <Button Content="Open Images Dir" Click="OpenImageFolder_Click" Margin="5" Width="100" FontSize="10">
+                <Button Content="打开图像文件夹" Click="OpenImageFolder_Click" Margin="5" Width="100" FontSize="10">
                     <Button.Height>
                         <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
                     </Button.Height>
                 </Button>
             </Viewbox>
             <Viewbox>
-                <Button Content="Open Labels Dir" Click="OpenLabelsFolder_Click" Margin="5" Width="100" FontSize="10">
+                <Button Content="打开标签文件夹" Click="OpenLabelsFolder_Click" Margin="5" Width="100" FontSize="10">
                     <Button.Height>
                         <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
                     </Button.Height>
                 </Button>
             </Viewbox>
             <Viewbox>
-                <Button Content="Change Output Dir" Click="ChangedSaveFolder_Click" Margin="5" Width="100" FontSize="10">
+                <Button Content="更改输出文件夹" Click="ChangedSaveFolder_Click" Margin="5" Width="100" FontSize="10">
                     <Button.Height>
                         <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
                     </Button.Height>
                 </Button>
             </Viewbox>
             <Viewbox>
-                <Button Content="Prev Image(A)" Click="PrevImage_Click" Margin="5" Width="100">
+                <Button Content="上一张(A)" Click="PrevImage_Click" Margin="5" Width="100">
                     <Button.Height>
                         <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
                     </Button.Height>
                 </Button>
             </Viewbox>
             <Viewbox>
-                <Button Content="Next Image(D)" Click="NextImage_Click" Margin="5" Width="100">
+                <Button Content="下一张(D)" Click="NextImage_Click" Margin="5" Width="100">
                     <Button.Height>
                         <Binding Path="Width" RelativeSource="{RelativeSource Self}"/>
                     </Button.Height>
